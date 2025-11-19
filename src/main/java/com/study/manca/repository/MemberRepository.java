@@ -1,16 +1,14 @@
 package com.study.manca.repository;
 
-import com.study.manca.entity.User;
+import com.study.manca.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
 
-@Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface MemberRepository extends JpaRepository<Member, Long> {
 
     // 이메일로 사용자 조회
-    Optional<User> findByEmail(String email);
+    Optional<Member> findByEmail(String email);
 
     // 이메일 중복 확인
     boolean existsByEmail(String email);
