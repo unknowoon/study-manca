@@ -1,8 +1,8 @@
 package com.study.manca.controller;
 
-import com.study.manca.dto.UserRequest;
-import com.study.manca.dto.UserResponse;
-import com.study.manca.service.UserService;
+import com.study.manca.dto.MemberResponse;
+import com.study.manca.dto.MemberRequest;
+import com.study.manca.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -13,17 +13,17 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/users")
 @RequiredArgsConstructor
-public class UserController {
+public class MemberController {
 
-    private final UserService userService;
+    private final MemberService memberService;
 
     /**
      * 전체 사용자 목록 조회
      * GET /api/users
      */
     @GetMapping
-    public ResponseEntity<List<UserResponse>> getAllUsers() {
-        List<UserResponse> users = userService.findAll();
+    public ResponseEntity<List<MemberResponse>> getAllUsers() {
+        List<MemberResponse> users = memberService.findAll();
         return ResponseEntity.ok(users);
     }
 
@@ -32,8 +32,8 @@ public class UserController {
      * GET /api/users/{id}
      */
     @GetMapping("/{id}")
-    public ResponseEntity<UserResponse> getUserById(@PathVariable Long id) {
-        UserResponse user = userService.findById(id);
+    public ResponseEntity<MemberResponse> getUserById(@PathVariable Long id) {
+        MemberResponse user = memberService.findById(id);
         return ResponseEntity.ok(user);
     }
 
@@ -42,8 +42,8 @@ public class UserController {
      * POST /api/users
      */
     @PostMapping
-    public ResponseEntity<UserResponse> createUser(@RequestBody UserRequest request) {
-        UserResponse createdUser = userService.create(request);
+    public ResponseEntity<MemberResponse> createUser(@RequestBody MemberRequest request) {
+        MemberResponse createdUser = memberService.create(request);
         return ResponseEntity.status(HttpStatus.CREATED).body(createdUser);
     }
 
@@ -52,10 +52,10 @@ public class UserController {
      * PUT /api/users/{id}
      */
     @PutMapping("/{id}")
-    public ResponseEntity<UserResponse> updateUser(
+    public ResponseEntity<MemberResponse> updateUser(
             @PathVariable Long id,
-            @RequestBody UserRequest request) {
-        UserResponse updatedUser = userService.update(id, request);
+            @RequestBody MemberRequest request) {
+        MemberResponse updatedUser = memberService.update(id, request);
         return ResponseEntity.ok(updatedUser);
     }
 
@@ -64,10 +64,10 @@ public class UserController {
      * PATCH /api/users/{id}
      */
     @PatchMapping("/{id}")
-    public ResponseEntity<UserResponse> updateUserPartial(
+    public ResponseEntity<MemberResponse> updateUserPartial(
             @PathVariable Long id,
-            @RequestBody UserRequest request) {
-        UserResponse updatedUser = userService.updatePartial(id, request);
+            @RequestBody MemberRequest request) {
+        MemberResponse updatedUser = memberService.updatePartial(id, request);
         return ResponseEntity.ok(updatedUser);
     }
 
@@ -77,7 +77,7 @@ public class UserController {
      */
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
-        userService.delete(id);
+        memberService.delete(id);
         return ResponseEntity.noContent().build();
     }
 }
