@@ -39,7 +39,10 @@ public class Order extends BaseEntity {
     private Integer quantity;  // 수량
 
     @Column(nullable = false, precision = 10, scale = 2)
-    private BigDecimal totalPrice;  // 총액
+    private BigDecimal totalPrice;  // 총액 (할인 전)
+
+    @Column(precision = 10, scale = 2)
+    private BigDecimal discountedPrice;  // 할인 적용 가격
 
     @Column(nullable = false)
     private LocalDateTime orderDateTime;  // 주문일시

@@ -3,6 +3,8 @@ package com.study.manca.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
+
 /**
  * 만화책 엔티티
  * 만화카페의 만화책 정보 관리
@@ -37,6 +39,10 @@ public class Book extends BaseEntity {
 
     @Column(nullable = false, length = 50)
     private String genre;  // 장르 (예: 액션, 로맨스, SF, 판타지)
+
+    @Column(precision = 10, scale = 2)
+    @Builder.Default
+    private BigDecimal rentalPrice = new BigDecimal("1000");  // 대여료 (기본 1,000원)
 
     @Column(nullable = false, length = 20)
     @Enumerated(EnumType.STRING)

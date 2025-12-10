@@ -3,6 +3,7 @@ package com.study.manca.entity;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 /**
@@ -46,6 +47,14 @@ public class Rental extends BaseEntity {
 
     @Column(length = 1000)
     private String remarks;  // 비고
+
+    @Column(precision = 10, scale = 2)
+    @Builder.Default
+    private BigDecimal rentalFee = BigDecimal.ZERO;  // 대여료
+
+    @Column(precision = 10, scale = 2)
+    @Builder.Default
+    private BigDecimal discountedFee = BigDecimal.ZERO;  // 할인 적용 대여료
 
     public enum RentalStatus {
         ACTIVE,     // 대여중
